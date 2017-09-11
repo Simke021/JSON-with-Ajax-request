@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JSON Sandbox</title>
+</head>
+<body>
+    <ul id="people"></ul>
+
+        <script>
+            /*
+            var person = {
+                name: "Aleksandar",
+                age: 32,
+                address: {
+                    street: "Neka Ulica 5",
+                    city: "Novi Sad"
+                },
+                kids: ["Marija", "Nikola"]
+
+                // email: function(){
+                //     return 'test@test.com';
+                // }
+            }
+            // pravim json od objekta
+            // person = JSON.stringify(person);
+
+            // parsiram json
+            // person = JSON.parse(person);
+
+            // console.log(person.name);
+            // console.log(person.address.street);
+            // console.log(person.kids[1]);
+
+            // niz objekata
+            var people = [
+                {
+                    name: "Pera",
+                    age: 35
+                },
+                {
+                    name: "Sima",
+                    age: 29
+                },
+                {
+                    name: "Mika",
+                    age: 44
+                }
+            ];
+            // console.log(people[1].age);
+
+            var output = "";
+
+            // Prolazim for petljom kroz sve clanove niza
+            for(var i = 0; i < people.length; i++){
+                // console.log(people[i]);
+                // console.log(people[i].name);
+
+                // Stavljam u promenljivu sva imena iz niza
+                output += '<li>' + people[i].name + '</li>';                
+            }     
+
+            // Ispisujem na strani
+            document.getElementById('people').innerHTML = output;
+
+           */ 
+
+
+           // Ajax zahtev https://www.w3schools.com/xml/xml_http.asp  
+           var xhttp = new XMLHttpRequest();
+           xhttp.onreadystatechange = function() {
+               if (this.readyState == 4 && this.status == 200) {
+                 var response = JSON.parse(xhttp.responseText);
+                 var people = response.people;
+     
+                 var output = '';
+                 for(var i = 0;i < people.length;i++){
+                   output += '<li>'+people[i].name+'</li>';
+                 }
+                 document.getElementById('people').innerHTML = output;
+               }
+           };
+           xhttp.open("GET", "people.json", true);
+           xhttp.send();
+
+        </script>
+</body>
+</html>
